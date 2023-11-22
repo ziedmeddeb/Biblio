@@ -19,3 +19,6 @@ app.use('/loans', loanController);
 
 const favoriteController = require('./controllers/favoriteController');
 app.use('/favorites', favoriteController);
+
+const reviewController = require('./controllers/reviewController');
+app.use('/reviews', reviewController);

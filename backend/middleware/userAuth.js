@@ -10,7 +10,7 @@ const protectUser = asyncHandler(async (req,res,next)=>{
     {
         try{
             token = req.headers.authorization.split(" ")[1];
-            const decrypt = Jwt.verify(token, "FitAppSecretKey");
+            const decrypt = Jwt.verify(token, "BiblioSecretKey");
             req.user = await User.findById(decrypt._id).select("-password");
             next();
         }
