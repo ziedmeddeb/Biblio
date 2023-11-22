@@ -1,12 +1,12 @@
 const express=require('express');
 const loanService=require('../services/loanService');
 const loanController=express.Router();
-loanController.get('/',async(req,res)=>{
+loanController.get('',async(req,res)=>{
     const loans=await loanService.getAllLoans();
     res.json(loans);
 }
 );
-loanController.post('/',async(req,res)=>{
+loanController.post('',async(req,res)=>{
     const loan=await loanService.addLoan(req.body);
     res.json(loan);
 }

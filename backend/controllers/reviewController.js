@@ -5,12 +5,12 @@ const protectUser = require("../middleware/userAuth");
 
 const reviewController = express.Router();
 
-reviewController.get('/', asyncHandler(async (req, res) => {
+reviewController.get('', asyncHandler(async (req, res) => {
     const reviews = await reviewService.getReviews();
     res.json(reviews);
 }));
 
-reviewController.post('/',protectUser, asyncHandler(async (req, res) => {
+reviewController.post('',protectUser, asyncHandler(async (req, res) => {
     const review = await reviewService.addReview(req.body);
     res.json(review);
 }));

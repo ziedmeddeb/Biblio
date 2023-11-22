@@ -2,12 +2,12 @@ const express=require('express');
 const favoriteService=require('../services/favoriteService');
 const favoriteController=express.Router();
 
-favoriteController.get('/',async(req,res)=>{
+favoriteController.get('',async(req,res)=>{
     const favorites=await favoriteService.getAllFavorites();
     res.json(favorites);
 }
 );
-favoriteController.post('/',async(req,res)=>{
+favoriteController.post('',async(req,res)=>{
     const favorite=await favoriteService.addFavorite(req.body);
     res.json(favorite);
 }

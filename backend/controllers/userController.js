@@ -5,7 +5,7 @@ const jwt = require("../config/token");
 const protectUser = require("../middleware/userAuth.js");
 const asyncHandler = require("express-async-handler");
 
-userController.get('/', asyncHandler(async (req, res) => {
+userController.get('', asyncHandler(async (req, res) => {
     const users = await userService.getUsers();
     res.json(users);
 }));
@@ -15,7 +15,7 @@ userController.get('/:id', protectUser, asyncHandler(async (req, res) => {
     res.status(200).json({ user:user, token: jwt(user) });
 }));
 
-userController.post('/', asyncHandler(async (req, res) => {
+userController.post('', asyncHandler(async (req, res) => {
     const user = await userService.addUser(req.body);
     res.status(200).json({ user:user, token: jwt(user) });
 }));
