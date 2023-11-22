@@ -6,7 +6,7 @@ const BookSchema = new mongoose.Schema({
         required: true,
         
     },
-    gender:{
+    type:{
         type: String,
         required: true,
         
