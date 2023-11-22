@@ -3,9 +3,12 @@ const FavoriteSchema=new mongoose.Schema({
     books:
 
     [{
-        type:mongoose.Schema.Types.ObjectId,
+        book:{
+            type:mongoose.Schema.Types.ObjectId,
         ref:'Book',
         required:true,
+        }
+        
     }]
 ,
     user:{

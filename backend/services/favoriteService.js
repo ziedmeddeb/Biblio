@@ -20,7 +20,7 @@ const favoriteService={
     },
     async addBookToFavorite(id,book){
         const favorite = await Favorite.findById(id);
-        favorite.books.push(book);
+        favorite.books.push({book:book});
         favorite.save();
         return favorite;
     }
