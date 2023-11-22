@@ -8,8 +8,14 @@ app.use(express.json());
 const port = 3000;
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
 connectmongodb();
-const livreController = require('./controllers/livreController');
-app.use('/livres', livreController);
+const bookController = require('./controllers/bookController');
+app.use('/books', bookController);
 
 const userController = require('./controllers/userController');
 app.use('/users', userController);
+
+const loanController = require('./controllers/loanController');
+app.use('/loans', loanController);
+
+const favoriteController = require('./controllers/favoriteController');
+app.use('/favorites', favoriteController);

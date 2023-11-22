@@ -1,23 +1,23 @@
 const mongoose = require('mongoose');
 
-const LivreSchema = new mongoose.Schema({
-    libelle:{
+const BookSchema = new mongoose.Schema({
+    name:{
         type: String,
         required: true,
         
     },
-    genre:{
+    gender:{
         type: String,
         required: true,
         
     },
-    auteur:{
+    author:{
         type: String,
         required: true,
         
     },
 
-    dateSortie:{
+    releaseDate:{
         type: Date,
         required: true,
     },
@@ -26,8 +26,8 @@ const LivreSchema = new mongoose.Schema({
        
     },
     });
-    const Livre = mongoose.model('Livre', LivreSchema);
-    module.exports = Livre;
+    const Book = mongoose.model('Book', BookSchema);
+    module.exports = Book;
 
     
 
