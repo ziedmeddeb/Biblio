@@ -8,3 +8,5 @@ app.use(express.json());
 const port = 3000;
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
 connectmongodb();
+const livreController = require('./controllers/livreController');
+app.use('/livres', livreController);
