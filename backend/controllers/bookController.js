@@ -34,4 +34,10 @@ bookController.get('/:id/reviews',async(req,res)=>{
 }
 );
 
+bookController.get('/:id/avgRatings',async(req,res)=>{
+    const avg=await bookService.getAvgRatings(req.params.id);
+    res.json(avg);
+}
+);
+
 module.exports=bookController;

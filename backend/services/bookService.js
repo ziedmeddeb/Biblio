@@ -27,6 +27,17 @@ const bookService={
         const reviews=await Review.find({book:id}).populate('user');
         return reviews;
 
-    }
+    },
+
+    async getAvgRatings(id){
+        const reviews=await Review.find({book:id});
+        let total=0;
+        let i=0;
+        reviews.forEach(review=>{
+            total+=review.rating;
+            i++;
+        });
+        return total/i;
+    }   
 };
 module.exports=bookService;
