@@ -44,4 +44,9 @@ userController.get('/:id/favorites', asyncHandler(async (req, res) => {
     const favorites = await userService.userFavoriteBooks(req.params.id);
     res.json(favorites);
 }));
+
+userController.put('changepass/:id',protectUser, asyncHandler(async (req, res) => {
+    const user = await userService.updatePassword(req.body.oldPassword, req.body.newPassword, req.params.id);
+    res.status(200).json(user);
+}));
 module.exports = userController;
