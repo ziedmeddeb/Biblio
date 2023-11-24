@@ -39,7 +39,15 @@ async loginUser(email, password) {
 
   async userFavoriteBooks(id) {
     const favorites=await Favorite.find({user:id}).populate('books.book');
-    return favorites;}
+    return favorites;},
+
+    async updatePassword(oldPassword, newPassword, id) {
+        const user= await User.findById(id);
+        if(user.password!==oldPassword) throw new Error("Old password is incorrect");
+        user.password=newPassword;
+        await user.save();
+        return user;
+    }
 
 
 };
