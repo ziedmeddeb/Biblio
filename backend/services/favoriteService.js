@@ -1,4 +1,5 @@
 const Favorite=require('../models/Favorite');
+
 const favoriteService={
     async getAllFavorites(){
         const favorites=await Favorite.find();
@@ -26,12 +27,15 @@ const favoriteService={
     },
     async removeBookFromFavorite(id,book){
         const favorite = await Favorite.findById(id);
-        favorite.books=favorite.books.filter((b)=>b.book!=book);
+        favorite.books.splice(favorite.books.findIndex((b)=>b.book==book),1);
+        
+            
+        
         favorite.save();
         return favorite;
     },
     async getFavoriteByUserId(id){
-        const favorite = await Favorite.findOne({user:id});
+        const favorite = await Favorite.findOne({user:id}).populate('books.book');
         return favorite;
     }
    
