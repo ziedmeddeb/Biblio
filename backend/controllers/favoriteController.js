@@ -28,4 +28,14 @@ favoriteController.put('/addBook/:id',async(req,res)=>{
     res.json(favorite);
 }
 );
+favoriteController.put('/removeBook/:id',async(req,res)=>{
+    const favorite=await favoriteService.removeBookFromFavorite(req.params.id,req.body.book);
+    res.json(favorite);
+}
+);
+favoriteController.get('/user/:id',async(req,res)=>{
+    const favorite=await favoriteService.getFavoriteByUserId(req.params.id);
+    res.json(favorite);
+}
+);
 module.exports=favoriteController;

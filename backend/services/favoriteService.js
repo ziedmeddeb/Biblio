@@ -23,6 +23,16 @@ const favoriteService={
         favorite.books.push({book:book});
         favorite.save();
         return favorite;
+    },
+    async removeBookFromFavorite(id,book){
+        const favorite = await Favorite.findById(id);
+        favorite.books=favorite.books.filter((b)=>b.book!=book);
+        favorite.save();
+        return favorite;
+    },
+    async getFavoriteByUserId(id){
+        const favorite = await Favorite.findOne({user:id});
+        return favorite;
     }
    
 };
