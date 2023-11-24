@@ -39,4 +39,9 @@ userController.post("/loginUser", asyncHandler(async (req, res) => {
     }
 }));
 
+
+userController.get('/:id/favorites', asyncHandler(async (req, res) => {
+    const favorites = await userService.userFavoriteBooks(req.params.id);
+    res.json(favorites);
+}));
 module.exports = userController;

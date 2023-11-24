@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Favorite = require('../models/Favorite');
 const userService = {
    
 async getUsers(){
@@ -36,5 +37,11 @@ async loginUser(email, password) {
   
   },
 
+  async userFavoriteBooks(id) {
+    const favorites=await Favorite.find({user:id}).populate('books.book');
+    return favorites;}
+
+
 };
+
 module.exports = userService;

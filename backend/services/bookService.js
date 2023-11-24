@@ -1,5 +1,6 @@
 
 const Book=require('../models/Book');
+const Review=require('../models/Review');
 const bookService={
     
     async getAllBooks(){
@@ -21,6 +22,11 @@ const bookService={
     async deleteBook(id){
         const deletedBook=await Book.findByIdAndDelete(id);
         return deletedBook;
+    },
+    async getBookReviews(id){
+        const reviews=await Review.find({book:id}).populate('user');
+        return reviews;
+
     }
 };
 module.exports=bookService;

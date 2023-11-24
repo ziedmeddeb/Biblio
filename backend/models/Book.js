@@ -25,6 +25,9 @@ const BookSchema = new mongoose.Schema({
         type: String,
        
     },
+    description:{
+        type: String,
+    },
     });
     const Book = mongoose.model('Book', BookSchema);
     module.exports = Book;

@@ -28,4 +28,10 @@ bookController.delete('/:id',async(req,res)=>{
 }
 );
 
+bookController.get('/:id/reviews',async(req,res)=>{
+    const reviews=await bookService.getBookReviews(req.params.id);
+    res.json(reviews);
+}
+);
+
 module.exports=bookController;
