@@ -22,4 +22,11 @@ loanController.put('/:id',async(req,res)=>{
     res.json(loan);
 }
 );
+
+loanController.get('/:id/user',async(req,res)=>{
+    const loans=await loanService.getLoansByUser(req.params.id);
+    res.json(loans);
+}
+);
+
 module.exports=loanController;

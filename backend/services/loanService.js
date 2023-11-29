@@ -17,6 +17,14 @@ const loanService={
     async updateLoan(id,data){
         const loan = await Loan.findByIdAndUpdate(id,data,{new:true});
         return loan;
-    }
+    },
+
+
+    async getLoansByUser(id){
+        const loans=await Loan.find({user:id}).populate('book');
+        return loans;
+    },
+
+
 };
 module.exports=loanService;
