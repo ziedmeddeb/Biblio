@@ -1,13 +1,24 @@
 const express = require('express');
-const cors = require("cors");
+const cors = require('cors');
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger_output.json");
+
 const connectmongodb = require('./config/config.js');
+
+
 const app = express();
-app.use(cors());
-app.use(express.urlencoded());
-app.use(express.json());
 const port = 3000;
-app.listen(port, () => console.log(`Server listening on port ${port}!`));
-connectmongodb();
+
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Serve Swagger UI at /api-docs endpoint
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}!`);
+  });
+
 const bookController = require('./controllers/bookController');
 app.use('/books', bookController);
 
@@ -22,3 +33,9 @@ app.use('/favorites', favoriteController);
 
 const reviewController = require('./controllers/reviewController');
 app.use('/reviews', reviewController);
+
+// Start server
+
+
+// Connect to MongoDB
+connectmongodb();
