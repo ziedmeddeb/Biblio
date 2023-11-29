@@ -7,6 +7,10 @@ const loanService={
     }
     ,
     async addLoan(loan){
+        const oldLoan= await Loan.findOne({user:loan.user,book:loan.book});
+        if(oldLoan) {throw new Error("Loan already exists");
+    }
+        else{
         const newloan=await Loan.create(loan);
         var book=await Book.findById(loan.book);
         if(!book) throw new Error("Book not found");
@@ -14,6 +18,7 @@ const loanService={
         book.quantity--;
         await book.save();
         return newloan;
+        }
     }
     ,
     async deleteLoan(id){

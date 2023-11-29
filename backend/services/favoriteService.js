@@ -23,14 +23,15 @@ const favoriteService={
         const favorite = await Favorite.findById(id);
         if(favorite.books.findIndex((b)=>b.book==book)==-1){
             favorite.books.push({book:book});
+            favorite.save();
+        return favorite;
         }
 
         
         else
         {throw new Error('Book already exists in favorite');}
         
-        favorite.save();
-        return favorite;
+        
     },
     async removeBookFromFavorite(id,book){
         const favorite = await Favorite.findById(id);
