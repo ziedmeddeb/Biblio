@@ -7,6 +7,7 @@ const FavoriteSchema=new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
         ref:'Book',
         required:true,
+        
         }
         
     }]
@@ -16,6 +17,7 @@ const FavoriteSchema=new mongoose.Schema({
         ref:'User',
         required:true,
     },
-});
+})
+
 const Favorite=mongoose.model('Favorite',FavoriteSchema);
 module.exports=Favorite;
