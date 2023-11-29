@@ -24,8 +24,12 @@ favoriteController.put('/:id',async(req,res)=>{
 }
 );
 favoriteController.put('/addBook/:id',async(req,res)=>{
-    const favorite=await favoriteService.addBookToFavorite(req.params.id,req.body.book);
-    res.json(favorite);
+    try{ const favorite=await favoriteService.addBookToFavorite(req.params.id,req.body.book);
+        res.json(favorite);}
+        catch(err){
+            res.status(400).send(err.message);
+        }
+   
 }
 );
 favoriteController.put('/removeBook/:id',async(req,res)=>{
