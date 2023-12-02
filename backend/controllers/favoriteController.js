@@ -9,8 +9,13 @@ favoriteController.get('',async(req,res)=>{
 }
 );
 favoriteController.post('',protectUser,async(req,res)=>{
-    const favorite=await favoriteService.addFavorite(req.body);
-    res.json(favorite);
+    try{ const favorite=await favoriteService.addFavorite(req.body);
+        res.json(favorite);}
+        catch(err){
+            res.status(400).json({message:err.message});
+        }
+
+   
 }
 );
 favoriteController.delete('/:id',protectUser,async(req,res)=>{
@@ -24,17 +29,17 @@ favoriteController.put('/:id',protectUser,async(req,res)=>{
     res.json(favorite);
 }
 );
-favoriteController.put('/addBook/:id',protectUser,async(req,res)=>{
-    try{ const favorite=await favoriteService.addBookToFavorite(req.params.id,req.body.book);
-        res.json(favorite);}
-        catch(err){
-            res.status(400).json({message:err.message});
-        }
+// favoriteController.put('/addBook/:id',protectUser,async(req,res)=>{
+//     try{ const favorite=await favoriteService.addBookToFavorite(req.params.id,req.body.book);
+//         res.json(favorite);}
+//         catch(err){
+//             res.status(400).json({message:err.message});
+//         }
    
-}
-);
-favoriteController.put('/removeBook/:id',protectUser,async(req,res)=>{
-    const favorite=await favoriteService.removeBookFromFavorite(req.params.id,req.body.book);
+// }
+// );
+favoriteController.delete('/removeBook/:userid/:bookid',protectUser,async(req,res)=>{
+    const favorite=await favoriteService.removeBookFromFavorite(req.params.userid,req.params.bookid);
     res.json(favorite);
 }
 );
