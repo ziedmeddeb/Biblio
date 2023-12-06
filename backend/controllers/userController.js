@@ -50,8 +50,14 @@ userController.get('/:id/favorites',protectUser, asyncHandler(async (req, res) =
 }));
 
 userController.put('/changepass/:id',protectUser, asyncHandler(async (req, res) => {
-    const user = await userService.updatePassword(req.body.oldPassword, req.body.newPassword, req.params.id);
-    res.status(200).json(user);
+    try{
+        const user = await userService.updatePassword(req.body.oldPassword, req.body.newPassword, req.params.id);
+        res.status(200).json(user);
+    }
+    catch(err){
+        res.status(400).json({message:err.message});
+    }
+   
 }));
 
 

@@ -1,5 +1,6 @@
 const bookService=require('../services/bookService');
 const express=require('express');
+const protect=require('../middleware/userAuth');
 const bookController=express.Router();
 
 bookController.get('',async(req,res)=>{
@@ -13,17 +14,17 @@ bookController.get('/:id',async(req,res)=>{
     res.json(book);
 }
 );
-bookController.post('',async(req,res)=>{
+bookController.post('',protect,async(req,res)=>{
     const book=await bookService.createBook(req.body);
     res.json(book);
 }
 );
-bookController.put('/:id',async(req,res)=>{
+bookController.put('/:id',protect,async(req,res)=>{
     const book=await bookService.updateBook(req.params.id,req.body);
     res.json(book);
 }
 );
-bookController.delete('/:id',async(req,res)=>{
+bookController.delete('/:id',protect,async(req,res)=>{
     const book=await bookService.deleteBook(req.params.id);
     res.json(book);
 }
