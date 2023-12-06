@@ -3,11 +3,13 @@ const userSchema = new mongoose.Schema({
 
     firstname: {
         type: String,
-        required: true
+        required: true,
+        minlength: 3,  
     },
     lastname: {
         type:String,
-        required: true
+        required: true,
+        minlength: 3,  
     },
     email: {
         type:String,
@@ -25,7 +27,8 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type:String,
-        required: true
+        required: true,
+        minlength: 6,  
     },
     role: {
         type:String,
@@ -35,11 +38,14 @@ const userSchema = new mongoose.Schema({
         required: true    },
     adresse: {
         type:String,
-        required: true
+        required: true,
+        minlength: 3,  
     },
     phoneNumber: {
         type:String,
-        required: true
+        required: true,
+        minlength: 8,  
+        maxlength: 8 
     },
    sex:{
             type:String,
@@ -50,10 +56,15 @@ const userSchema = new mongoose.Schema({
         university:{
             type:String,
             required:true,
+            minlength: 3,  
         },
         cin:{
             type:String,
-            required : true
+            required : true,
+            minlength: 8,  
+            maxlength: 8 
+            
+
         }
 });
 const User = mongoose.model('User', userSchema);
