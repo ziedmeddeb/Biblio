@@ -13,9 +13,9 @@ async getUserById (id) {
 },
 
 async addUser(user){
-    const oldUser= await User.findOne({cin:user.cin});
+    const oldUser= await User.findOne({ $or: [{ cin: user.cin }, { email: user.email }] });
 
-    if(oldUser) {throw new Error("User already exists with this cin")}
+    if(oldUser) {throw new Error("User already exists")}
     else{
         const createdUser = await User.create(user);
     return createdUser.toObject();

@@ -1,16 +1,6 @@
 const mongoose=require('mongoose');
 const FavoriteSchema=new mongoose.Schema({
-    // books:
-
-    // [{
-    //     book:{
-    //         type:mongoose.Schema.Types.ObjectId,
-    //     ref:'Book',
-    //     required:true,
-        
-    //     }
-        
-    // }
+    
     book:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Book',
